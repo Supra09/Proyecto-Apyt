@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Orbitron:wght@400..900&display=swap');
+
+:root {
+    --login-50: #fff0f1;
+    --login-100: #ffdddf;
+    --login-200: #ffc0c3;
+    --login-200-trasp: #ffc0c385;
+    --login-300: #ff9499;
+    --login-400: #ff5760;
+    --login-500: #ff232e;
+    --login-600: #ff000d;
+    --login-700: #d7000b;
+    --login-800: #b1030c;
+    --login-900: #920a11;
+    --login-950: #500004;
+}
+
+.fondo {
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(to top left, #b1030c 0%, #fff0f1 100%);
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.fondoDos {
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(to bottom, #c5131f 0%, #b1030c 100%);
+}
+
+.titleLogin {
+    font-family: "Cinzel", serif;
+    font-weight: 746;
+}
+
+.imgLogin {
+    width: 400px;
+}
+
+.formLogin {
+    background-color: var(--login-200-trasp);
+
+}
+
+.btnLogout:hover {
+    transform: scale(1.4);
+}
+
+.btnLogout {
+    background-color: transparent;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.btn-nav {
+    background-color: var(--login-900);
+    color: var(--login-50);
+    font-weight: 700;
+}
+
+.btn-nav:hover {
+    background-color: var(--login-50);
+    color: var(--login-950);
+}
+
+.styled-table .odd-row {
+    background-color: white;
+    /* Color para filas impares */
+}
+
+.styled-table .even-row {
+    background-color: var(--login-50)
+        /* Color para filas pares */
+}
+
+.btnPerson{
+    color: var(--login-950);
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 0.5px;
+}
+.btnPerson:hover{
+    color: var(--login-50);
+    background-color: var(--login-800);
+    border-radius: 50%;
+}
