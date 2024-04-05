@@ -127,7 +127,7 @@ agregar.post("/crear", async (req, res) => {
         if (errors) return res.status(500).json({ errors: 'error al conectarse con la base de datos' });
         conexion.query(consulta, [jerarquia, cedula, nombres, apellidos, usuario, encriptar], (err, respuesta) => {
             if (err) return res.status(400).json({ err: 'error al realizar la consulta' });
-            res.status(200).json({mensaje:'Usuario agregado exitosamente', respuesta});
+            res.status(200).json({ mensaje: 'Usuario agregado exitosamente', respuesta });
         });
     });
 });
@@ -189,17 +189,32 @@ agregar.post("/crear", async (req, res) => {
  */
 
 
-agregar.put("/actualizar/:id", (req, res) => {
-    req.getConnection((falla, conexion) => {
-        if (falla) return (res.status(500).json({ error: "No hay conexión con el servidor" }),
-            console.info("error en la conexión conslta"));
-        conexion.query("UPDATE empleados SET ? WHERE id_empleado = ?",
-            [req.body, req.params.id], (err, actualiza) => {
-                if (err) return (res.status(400).json({ error: "no se realizó la consulta" }),
-                    console.info("error en la consulta"));
-                res.status(200).json({ mensaje: actualiza });
-            });
+agregar.put("/actualizar", async (req, res) => {
+    const id = parseInt(req.body.id);
+    const jerarquia = parseInt(req.body.jerarquia);
+    const cedula = (req.body.cedula);
+    const nombres = (req.body.nombres);
+    const apellidos = (req.body.apellidos);
+    const usuario = (req.body.usuario);
+    const password = (req.body.password);
+    var cambios;
+    var datos;
 
+    if (password === '') {
+        var cambios = 'id_jerarquia = ?, cedula = ?, nombres = ?, apellidos=?, usuario=?';
+        var datos = [jerarquia, cedula, nombres, apellidos, usuario, id];
+    }
+    else {
+        const encriptacion = await bcrypt.hash(password, 8);
+        var cambios = 'id_jerarquia = ?, cedula = ?, nombres = ?, apellidos = ?, usuario = ?, password = ?';
+        var datos = [jerarquia, cedula, nombres, apellidos, usuario, encriptacion, id];
+    }
+    req.getConnection((errors, conexion) => {
+        if (errors) return res.status(500).json({ errors: 'error al conectarse con la base de datos' });
+        conexion.query(`UPDATE empleados SET ${cambios} WHERE id_empleado = ?`, datos, (err, respuesta) => {
+            if (err) return res.status(400).json({ err: 'error al realizar la consulta' });
+            res.status(200).json({ mensaje: 'Usuario editado exitosamente', respuesta });
+        });
     });
 });
 
@@ -233,14 +248,15 @@ agregar.put("/actualizar/:id", (req, res) => {
  */
 
 agregar.delete("/eliminar/:id", (req, res) => {
+    const id = parseInt(req.params.id)
     req.getConnection((falla, conexion) => {
         if (falla) return (res.status(500).json({ error: "No hay conexión con el servidor" }),
             console.info("error en la conexión conslta"));
         conexion.query("DELETE FROM empleados WHERE id_empleado = ?",
-            [req.params.id], (err, borra) => {
+            [id], (err, borra) => {
                 if (err) return (res.status(400).json({ error: "no se realizó la consulta" }),
                     console.info("error en la consulta"));
-                res.status(200).json({ mensaje: borra });
+                res.status(200).json({ mensaje: 'eliminado' });
             });
 
     });
