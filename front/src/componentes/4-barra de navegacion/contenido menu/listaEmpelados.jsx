@@ -2,10 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import CrearEmpleado from "./crearEmpleado.jsx";
+import EliminarEmpleado from "./eliminarEmpleado.jsx";
 
 function ListaEmpleados() {
     const [listaEmpleados, setListaEmpleados] = useState([]);
     const [busqueda, setBusqueda] = useState("");
+    const [empleadoSeleccionado, setEmpleadoSeleccionado] = useState(null);
+    const [eliminar, setEliminar] = useState(null);
+    const [show, setShow] = useState(false);
+
+    const handleShow = () => { setShow(true); }
+    const closeShow = () => { setShow(false); }
 
     useEffect(() => {
         listarEmpleados();
@@ -23,6 +30,21 @@ function ListaEmpleados() {
     const handleBusquedaChange = (e) => {
         setBusqueda(e.target.value);
     };
+
+    const handleEditarEmpleado = (index) => {
+        const empleado = listaEmpleados[index];
+        setEmpleadoSeleccionado(empleado);
+        console.log(empleado);
+    };
+
+    const handleEliminarEmpleado = (index) => {
+        handleShow();
+        const { id_empleado, usuario } = listaEmpleados[index];
+        const empleado = { id_empleado, usuario };
+        setEliminar(empleado);
+        console.log(empleado);
+    }
+    
 
     const filteredEmpleados = listaEmpleados.filter(empleado => {
         return (
@@ -62,8 +84,8 @@ function ListaEmpleados() {
                                         <td className='col text-start'>{empleado.apellidos}</td>
                                         <td className='col'>{empleado.cedula}</td>
                                         <td className='col'>
-                                            <span className="material-symbols-outlined btnPerson">person_edit</span>
-                                            <span className="material-symbols-outlined btnPerson">delete_sweep</span>
+                                            <span className="material-symbols-outlined btnPerson" onClick={() => handleEditarEmpleado(index)}>person_edit</span>
+                                            <span className="material-symbols-outlined btnPerson" onClick={() => handleEliminarEmpleado(index)}>delete_sweep</span>
                                         </td>
                                     </tr>
                                 ))}
@@ -72,7 +94,8 @@ function ListaEmpleados() {
                     </div>
                 </div>
                 <div className="col-md-6 mt-5">
-                    <CrearEmpleado infoEmpleados={listaEmpleados} actualizarLista={listarEmpleados} />
+                    <CrearEmpleado infoEmpleados={listaEmpleados} empleadoSeleccionado={empleadoSeleccionado} actualizarLista={listarEmpleados} />
+                    <EliminarEmpleado abrirModal={show} cerrarModal={closeShow} eliminar={eliminar} actualizarLista={listarEmpleados}/>
                 </div>
             </div>
         </section>
