@@ -1,8 +1,9 @@
+import BarraNav from '../4-barra de navegacion/barraNav.jsx';
 
 function Asesor() {
     return(
         <>
-            asesor
+            <BarraNav/>
         </>
     )
 };
