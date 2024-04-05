@@ -84,3 +84,7 @@
     background-color: var(--login-800);
     border-radius: 50%;
 }
+
+.titleChatBot{
+    color: var(--login-950);
+}
