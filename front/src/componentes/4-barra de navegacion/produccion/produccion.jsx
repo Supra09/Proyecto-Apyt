@@ -120,13 +120,25 @@ const Produccion = () => {
         {
             id: 'opciones5', options: [
                 { value: 'si', label: 'Si', trigger: 'foto' },
-                { value: 'no', label: 'No', trigger: 'conNavega2' },
+                { value: 'no', label: 'No', trigger: 'noPack' },
                 { value: 'salir', label: 'salir', trigger: 'fin' },
 
             ]
         },
 
+        {
+            id: 'noPack',
+            component: <Procesos consulta={4}/>,
+            asMessage: true,
+            trigger: 'procesoTres'
+        },
 
+        {
+            id: 'procesoTres',
+            component: <Tipifica consulta={5}/>,
+            asMessage: true,
+            trigger: 'respVuelta5'
+        },
         
         {
             id: 'foto',
