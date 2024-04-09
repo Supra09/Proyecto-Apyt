@@ -13,12 +13,12 @@ export function ConsultaLinea({ steps }) {
         console.log(`Esta es la linea con la cual se va hacer la consulta: ${linea}`);
         try {
             const response = await axios.get(`http://localhost:3301/cliente/${linea}`);
-            if (response.data.mensaje) {
-                console.log(response.data.mensaje);
-                setInfoCliente([]);
+            if (response.data.resultado) {
+                console.log(response.data.resultado);
+                setInfoCliente(response.data.resultado);
             } else {
-                setInfoCliente(response.data.resultados);
-                console.log(response.data.resultados);
+                setInfoCliente([]);
+                console.log(response.data.mensaje);
             }
         } catch (error) {
             console.error("Error en la consulta:", error);

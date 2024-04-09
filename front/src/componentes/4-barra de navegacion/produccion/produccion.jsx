@@ -109,8 +109,10 @@ const Produccion = () => {
             id: 'procesoDos',
             component: <Tipifica consulta={1}/>,
             asMessage: true,
-            trigger: 'respuesta5'
+            trigger: 'respVuelta5'
         },
+
+        
 
 
         { id: 'respVuelta2', message: '¿tiene paquete crgado?', trigger: 'opciones5' },
