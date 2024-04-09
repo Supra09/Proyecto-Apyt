@@ -10,13 +10,19 @@ export function ConsultaLinea({ steps }) {
 
     const consultaLinea = async () => {
         const linea = steps.capturarLinea.value;
-        console.log(`Esta es la línea con la cual se va a hacer la consulta: ${linea}`);
+        console.log(`Esta es la linea con la cual se va hacer la consulta: ${linea}`);
         try {
             const response = await axios.get(`http://localhost:3301/cliente/${linea}`);
-            setInfoCliente(response.data.resultados);
-            console.log(response.data.resultados);
+            if (response.data.mensaje) {
+                console.log(response.data.mensaje);
+                setInfoCliente([]);
+            } else {
+                setInfoCliente(response.data.resultados);
+                console.log(response.data.resultados);
+            }
         } catch (error) {
-            setInfoCliente([]); // Establece infoCliente como un array vacío
+            console.error("Error en la consulta:", error);
+            setInfoCliente([]);
         }
     };
 
@@ -33,4 +39,4 @@ export function ConsultaLinea({ steps }) {
             </div>
         </>
     );
-}
+};
