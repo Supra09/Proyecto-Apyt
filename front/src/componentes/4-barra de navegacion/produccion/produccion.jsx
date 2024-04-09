@@ -7,7 +7,7 @@ import { NoNavega } from './subProduccion/noNavega';
 const Produccion = () => {
     // Estado para almacenar todos los mensajes del bot
     const [historialChat, setHistorialChat] = useState([]);
-    const [numero, setNum] = useState('');
+    const [numero, setNum] = useState([]);
 
     const mensajes = [
         { id: 'saludo', message: "¡hola, soy Apyt, tu asistente de procesos!", trigger: "pregunta1" },
@@ -34,7 +34,7 @@ const Produccion = () => {
             user: true,
             validator: (value) => {
                 if (!isNaN(value)) {
-                    setNum(value); // Almacena el valor capturado en numero
+                    setNum(value);
                     return true;
                 }
                 return 'Porfavor ingrese un numero valido'
@@ -65,38 +65,23 @@ const Produccion = () => {
 
             ]
         },
-        { id: 'noNavega', message: "No navega, iniciemos con las verificaciónes.", trigger: "almacenarNumero1" },
+        { id: 'noNavega', message: "No navega, iniciemos con las verificaciónes.", trigger: "consultaNonavega" },
         { id: 'noGenera', message: 'No genera ni recibe llamadas o sms, iniciemos con las verificaciónes.', trigger: "opciones3" },
         { id: 'sinSeñal', message: "Sin señal, iniciemos con las verificaciónes.", trigger: "opciones3" },
 
-        /* {
-            id: "almacenarNumero1",
-            trigger: "conNavega1",
-            hideInput: true,
-        }, */
-        
         {
-            id: "almacenarNumero1",
-            message: "Validación 1",
-            action: () => {
-                const dato1 = 1;
-                return { dato1 };            
-            },            
-            trigger: "conNavega2",
+            id: "consultaNonavega",message: "Validación 1",trigger: "conNavega2",
         },
-        
 
-        
         {
             id: 'conNavega2',
-            component: <NoNavega valor={numero} />,
+            component: <NoNavega consulta={1}/>,
             asMessage: true,
             trigger: 'respVuelta1'
         },
 
         { id: 'respVuelta1', message: 'aqui vamos', trigger: 'opciones3' },
         { id: 'fin', message: 'Espero haber sido de ayuda', end: true }
-
 
     ];
 

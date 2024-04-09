@@ -14,7 +14,7 @@ produccion.get("/cliente/:linea", (req, res) => {
                 return res.status(400).json({ error: "No se realizó la consulta" });
             }          
             if (resultados.length === 0) {
-                return res.status(404).json({ error: "Cliente no encontrado" });
+                return res.json({ mensaje: "Cliente no encontrado" });
             }           
             res.status(200).json({ mensaje: 'Cliente encontrado', resultados });
         });
