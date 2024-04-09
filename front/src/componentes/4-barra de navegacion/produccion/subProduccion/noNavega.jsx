@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-export function NoNavega({consulta}) {
+export function NoNavega({ consulta }) {
     const [consultaNavega, setconsultaNavega] = useState([]);
 
     useEffect(() => {
@@ -36,3 +36,6 @@ export function NoNavega({consulta}) {
         </>
     );
 }
+
+
+
