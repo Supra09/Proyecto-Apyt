@@ -113,31 +113,19 @@ const Produccion = () => {
         },
 
 
-        { id: 'respVuelta2', message: '¿tiene paquete cargado?', trigger: 'opciones5' },
+        { id: 'respVuelta2', message: '¿tiene paquete crgado?', trigger: 'opciones5' },
 
         {
             id: 'opciones5', options: [
                 { value: 'si', label: 'Si', trigger: 'foto' },
-                { value: 'no', label: 'No', trigger: 'respuesta5' },
+                { value: 'no', label: 'No', trigger: 'conNavega2' },
                 { value: 'salir', label: 'salir', trigger: 'fin' },
 
             ]
         },
 
-       /*  {
-            id: 'conNavega2',
-            component: <Procesos consulta={4}/>,
-            asMessage: true,
-            trigger: 'procesoTres'
-        },
 
-        {
-            id: 'procesoTres',
-            component: <Tipifica consulta={5}/>,
-            asMessage: true,
-            trigger: 'respuesta5'
-        }, */
-
+        
         {
             id: 'foto',
             component: <NoNavega consulta={3}/>,
