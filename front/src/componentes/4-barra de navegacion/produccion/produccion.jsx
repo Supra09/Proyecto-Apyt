@@ -72,12 +72,12 @@ const Produccion = () => {
         { id: 'sinSeñal', message: "Sin señal, iniciemos con las verificaciónes.", trigger: "opciones3" },
 
         {
-            id: "consultaNonavega",message: "vamos a hacer las consultas",trigger: "conNavega2",
+            id: "consultaNonavega", message: "vamos a hacer las consultas", trigger: "conNavega2",
         },
 
         {
             id: 'conNavega2',
-            component: <NoNavega consulta={1}/>,
+            component: <NoNavega consulta={1} />,
             asMessage: true,
             trigger: 'respVuelta1'
         },
@@ -93,26 +93,26 @@ const Produccion = () => {
         },
         {
             id: 'pcrf',
-            component: <NoNavega consulta={2}/>,
+            component: <NoNavega consulta={2} />,
             asMessage: true,
             trigger: 'respVuelta2'
         },
 
         {
             id: 'noActiva',
-            component: <Procesos consulta={1}/>,
+            component: <Procesos consulta={1} />,
             asMessage: true,
             trigger: 'procesoDos'
         },
 
         {
             id: 'procesoDos',
-            component: <Tipifica consulta={1}/>,
+            component: <Tipifica consulta={1} />,
             asMessage: true,
             trigger: 'respVuelta5'
         },
 
-        
+
 
 
         { id: 'respVuelta2', message: '¿tiene paquete crgado?', trigger: 'opciones5' },
@@ -128,21 +128,21 @@ const Produccion = () => {
 
         {
             id: 'noPack',
-            component: <Procesos consulta={4}/>,
+            component: <Procesos consulta={4} />,
             asMessage: true,
             trigger: 'procesoTres'
         },
 
         {
             id: 'procesoTres',
-            component: <Tipifica consulta={5}/>,
+            component: <Tipifica consulta={5} />,
             asMessage: true,
             trigger: 'respVuelta5'
         },
-        
+
         {
             id: 'foto',
-            component: <NoNavega consulta={3}/>,
+            component: <NoNavega consulta={3} />,
             asMessage: true,
             trigger: 'respVuelta3'
         },
@@ -150,31 +150,54 @@ const Produccion = () => {
         {
             id: 'respVuelta3', options: [
                 { value: 'si', label: 'Si', trigger: 'procesoUno' },
-                { value: 'no', label: 'No', trigger: 'conNavega2' },
+                { value: 'no', label: 'No', trigger: 'noFoto' },
                 { value: 'salir', label: 'salir', trigger: 'fin' },
 
             ]
         },
+
+        {
+            id: 'noFoto',
+            component: <Procesos consulta={3} />,
+            asMessage: true,
+            trigger: 'procesoCuatro'
+        },
+
+        {
+            id: 'procesoCuatro',
+            component: <Tipifica consulta={1} />,
+            asMessage: true,
+            trigger: 'respVuelta5'
+        },
+
         {
             id: 'procesoUno',
-            component: <Tipifica consulta={8}/>,
+            component: <Tipifica consulta={8} />,
             asMessage: true,
             trigger: 'respVuelta4'
         },
 
-       
+
 
         {
             id: 'respVuelta4', options: [
-                { value: 'si', label: 'Si', trigger: 'procesoDos' },
-                { value: 'no', label: 'No', trigger: 'procesoUno' },
+                { value: 'si', label: 'Si', trigger: 'procesox' },
+                { value: 'no', label: 'No', trigger: 'escale' },
                 { value: 'salir', label: 'salir', trigger: 'fin' },
 
             ]
         },
+
         {
-            id: 'procesoDos',
-            component: <Tipifica consulta={3}/>,
+            id: 'escale',
+            component: <Tipifica consulta={6} />,
+            asMessage: true,
+            trigger: 'respVuelta5'
+        },
+
+        {
+            id: 'procesox',
+            component: <Tipifica consulta={3} />,
             asMessage: true,
             trigger: 'respVuelta5'
         },
