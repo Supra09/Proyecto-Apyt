@@ -215,19 +215,19 @@ const Produccion = () => {
         
 
         {
-            id: "noGenera", message: "vamos a hacer las consultas", trigger: "conNavega2",
+            id: "noGenera", message: "vamos a hacer las consultas", trigger: "noGenera2",
         },
 
         {
-            id: 'conNavega2',
+            id: 'noGenera2',
             component: <NoNavega consulta={1} />,
             asMessage: true,
-            trigger: 'respVuelta1'
+            trigger: 'respVueltaUno'
         },
 
-        { id: 'respVuelta1', message: '¿está activa?', trigger: 'opciones4' },
+        { id: 'respVueltaUno', message: '¿está activa?', trigger: 'opcionesCuatro' },
         {
-            id: 'opciones4', options: [
+            id: 'opcionesCuatro', options: [
                 { value: 'si', label: 'Si', trigger: 'llama' },
                 { value: 'no', label: 'No', trigger: 'noActiva' },
                 { value: 'salir', label: 'salir', trigger: 'fin' },
