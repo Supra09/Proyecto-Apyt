@@ -27,7 +27,7 @@ export function NoNavega({consulta}) {
             <div>
                 {consultaNavega.length > 0 ? (
                     <p>
-                        Validación 1: {consultaNavega[0].consulta}
+                        {consultaNavega[0].consulta}
                     </p>
                 ) : (
                     <p>No hay info</p>

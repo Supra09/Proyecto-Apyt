@@ -3,6 +3,7 @@ import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
 import { ConsultaLinea } from './subProduccion/consultaLinea';
 import { NoNavega } from './subProduccion/noNavega';
+import { Tipifica } from './subProduccion/tipificacion';
 
 const Produccion = () => {
     // Estado para almacenar todos los mensajes del bot
@@ -70,7 +71,7 @@ const Produccion = () => {
         { id: 'sinSeñal', message: "Sin señal, iniciemos con las verificaciónes.", trigger: "opciones3" },
 
         {
-            id: "consultaNonavega",message: "Validación 1",trigger: "conNavega2",
+            id: "consultaNonavega",message: "vamos a hacer las consultas",trigger: "conNavega2",
         },
 
         {
@@ -80,7 +81,54 @@ const Produccion = () => {
             trigger: 'respVuelta1'
         },
 
-        { id: 'respVuelta1', message: 'aqui vamos', trigger: 'opciones3' },
+        { id: 'respVuelta1', message: '¿está activa?', trigger: 'opciones4' },
+        {
+            id: 'opciones4', options: [
+                { value: 'si', label: 'Si', trigger: 'pcrf' },
+                { value: 'no', label: 'No', trigger: 'conNavega2' },
+                { value: 'salir', label: 'salir', trigger: 'fin' },
+
+            ]
+        },
+        {
+            id: 'pcrf',
+            component: <NoNavega consulta={2}/>,
+            asMessage: true,
+            trigger: 'respVuelta2'
+        },
+
+        { id: 'respVuelta2', message: '¿tiene paquete crgado?', trigger: 'opciones5' },
+
+        {
+            id: 'opciones5', options: [
+                { value: 'si', label: 'Si', trigger: 'foto' },
+                { value: 'no', label: 'No', trigger: 'conNavega2' },
+                { value: 'salir', label: 'salir', trigger: 'fin' },
+
+            ]
+        },
+        {
+            id: 'foto',
+            component: <NoNavega consulta={3}/>,
+            asMessage: true,
+            trigger: 'respVuelta3'
+        },
+
+        {
+            id: 'respVuelta3', options: [
+                { value: 'si', label: 'Si', trigger: 'procesoUno' },
+                { value: 'no', label: 'No', trigger: 'conNavega2' },
+                { value: 'salir', label: 'salir', trigger: 'fin' },
+
+            ]
+        },
+        {
+            id: 'procesoUno',
+            component: <Tipifica consulta={8}/>,
+            asMessage: true,
+            trigger: 'respVuelta3'
+        },
+
         { id: 'fin', message: 'Espero haber sido de ayuda', end: true }
 
     ];

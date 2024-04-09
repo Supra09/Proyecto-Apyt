@@ -41,6 +41,26 @@ produccion.get("/noNavega/:dato1", (req, res) => {
     });
 });
 
+produccion.get("/tipificacion/:respuesta", (req, res) => {
+    const tipificacion1 = req.params.respuesta;     
+    req.getConnection((error, conexion) => {
+        if (error) {
+            console.error('Error de conexión:', error);
+            return res.status(500).json({ error: "No hay conexión con el servidor" });
+        }
+        conexion.query("SELECT * FROM tipificaciones WHERE id_tipificacion = ?", tipificacion1, (err, resultados) => {
+            if (err) {
+                console.error('Error en la tipificacion:', err);
+                return res.status(400).json({ error: "No se realizó la consulta" });
+            }          
+            if (resultados.length === 0) {
+                return res.status(404).json({ error: "tipificacionNav no encontrado" });
+            }           
+            res.status(200).json({ mensaje: 'tipificacion exitosa', resultados });
+        });
+    });
+});
+
 produccion.post("/crear_cliente", async (req, res) => {
     const id_servicio = parseInt(req.body.id_servicio);
     const nombres = String(req.body.nombres);
