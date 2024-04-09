@@ -126,7 +126,34 @@ const Produccion = () => {
             id: 'procesoUno',
             component: <Tipifica consulta={8}/>,
             asMessage: true,
-            trigger: 'respVuelta3'
+            trigger: 'respVuelta4'
+        },
+
+       
+
+        {
+            id: 'respVuelta4', options: [
+                { value: 'si', label: 'Si', trigger: 'procesoDos' },
+                { value: 'no', label: 'No', trigger: 'procesoUno' },
+                { value: 'salir', label: 'salir', trigger: 'fin' },
+
+            ]
+        },
+        {
+            id: 'procesoDos',
+            component: <Tipifica consulta={3}/>,
+            asMessage: true,
+            trigger: 'respVuelta5'
+        },
+
+        { id: 'respVuelta5', message: '¿deseas que te ayude con algo más?', trigger: 'opciones6' },
+
+        {
+            id: 'opciones6', options: [
+                { value: 'inicio', label: 'Si', trigger: 'pregunta1' },
+                { value: 'salir', label: 'salir', trigger: 'fin' },
+
+            ]
         },
 
         { id: 'fin', message: 'Espero haber sido de ayuda', end: true }
