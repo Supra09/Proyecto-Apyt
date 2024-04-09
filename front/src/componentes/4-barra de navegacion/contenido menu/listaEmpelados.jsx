@@ -31,18 +31,29 @@ function ListaEmpleados() {
         setBusqueda(e.target.value);
     };
 
-    const handleEditarEmpleado = (index) => {
-        const empleado = listaEmpleados[index];
+    const handleEditarEmpleado = (idEmpleado) => {
+        const infoEmpl = idEmpleado
+        let empleado
+        for (let i = 0; i < listaEmpleados.length; i++) {
+            if (listaEmpleados[i].id_empleado === infoEmpl) {
+                empleado = listaEmpleados[i];
+            }
+        }
         setEmpleadoSeleccionado(empleado);
         console.log(empleado);
     };
 
-    const handleEliminarEmpleado = (index) => {
+    const handleEliminarEmpleado = (idEmpleado) => {
         handleShow();
-        const { id_empleado, usuario } = listaEmpleados[index];
-        const empleado = { id_empleado, usuario };
+        const id_emp = idEmpleado
+        let empleado
+        for (let i = 0; i < listaEmpleados.length; i++) {
+            if (listaEmpleados[i].id_empleado === id_emp) {
+                empleado = listaEmpleados[i];
+            }
+        }
         setEliminar(empleado);
-        console.log(empleado);
+        console.log(empleado); 
     }
     
 
@@ -84,8 +95,8 @@ function ListaEmpleados() {
                                         <td className='col text-start'>{empleado.apellidos}</td>
                                         <td className='col'>{empleado.cedula}</td>
                                         <td className='col'>
-                                            <span className="material-symbols-outlined btnPerson" onClick={() => handleEditarEmpleado(index)}>person_edit</span>
-                                            <span className="material-symbols-outlined btnPerson" onClick={() => handleEliminarEmpleado(index)}>delete_sweep</span>
+                                            <span className="material-symbols-outlined btnPerson" onClick={() => handleEditarEmpleado(empleado.id_empleado)}>person_edit</span>
+                                            <span className="material-symbols-outlined btnPerson" onClick={() => handleEliminarEmpleado(empleado.id_empleado)}>delete_sweep</span>
                                         </td>
                                     </tr>
                                 ))}
