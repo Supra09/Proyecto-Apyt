@@ -1,0 +1,15 @@
+# Ignorar archivos y carpetas generados automáticamente
+node_modules/
+dist/
+build/
+
+# Ignorar archivos de configuración local
+.env
+
+# Ignorar archivos de dependencias de desarrollo
+package-lock.json
+yarn.lock
+
+# Ignorar archivos de caché y registros
+.cache/
+logs/
