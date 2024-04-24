@@ -1,0 +1,31 @@
+GET http://localhost:3301/clientes/listarClientes HTTP/1.1
+
+###
+
+POST http://localhost:3301/clientes/crearClientes HTTP/1.1
+Content-Type: application/json
+
+{
+    "id_cliente": 6,
+    "id_servicio": 4,
+    "contrato_linea": "84789521",
+    "nombres": "luisa",
+    "apellidos": "guerrero"
+}
+
+###
+
+PUT http://localhost:3301/clientes/6 HTTP/1.1
+Content-Type: application/json
+
+{
+    
+    "id_servicio": 5,
+    "contrato_linea": "1458",
+    "nombres": "rodrigo",
+    "apellidos": "melo"
+}
+
+###
+
+DELETE http://localhost:3301/clientes/eliminar/6 HTTP/1.1

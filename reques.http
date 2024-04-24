@@ -1,0 +1,19 @@
+POST http://localhost:3301/crear HTTP/1.1
+Content-Type: application/json
+
+{       
+    
+    "id_jerarquia": 1,
+    "cedula": 1103499058,
+    "nombres": "cristian",
+    "apellidos": "tovar",
+    "usuario": "cristian.Tovar",
+    "password": "1234"
+
+
+}
+
+
+###
+
+GET http://localhost:3301/listar HTTP/1.1

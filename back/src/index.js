@@ -7,6 +7,7 @@ import agregar from "./routes/agregar.js";
 import login from "./routes/login.js";
 import swaggerJSDocs from "../swagger.js";
 import produccion from "./routes/produccion.js";
+import clientes from "./routes/clientes.js";
 
 
 //constantes
@@ -41,5 +42,7 @@ app.get("/", (req, res) => {
 app.use("/", agregar);
 app.use("/", login);
 app.use("/", produccion);
+app.use("/clientes", clientes);
+
 
 
